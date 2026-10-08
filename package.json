@@ -1,0 +1,23 @@
+{
+  "name": "automation-learning",
+  "version": "1.0.0",
+  "description": "My journey learning QA automation with JavaScript, Playwright, API testing, and test automation frameworks.",
+  "main": "lesson3.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aadhinathr32-glitch/qa-automation-learning.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/aadhinathr32-glitch/qa-automation-learning/issues"
+  },
+  "homepage": "https://github.com/aadhinathr32-glitch/qa-automation-learning#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.64.0",
+    "@types/node": "^26.6.4"
+  }
+}
