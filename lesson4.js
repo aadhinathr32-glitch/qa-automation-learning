@@ -2,7 +2,7 @@ function waitOneSecond(){
     return new Promise(resolve => {
         setTimeout(() => {
             resolve("Test completed");
-        }, 1000);
+        },  1000);
     });
 }
 async function main(){
