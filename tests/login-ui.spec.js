@@ -1,17 +1,37 @@
 import { test, expect } from '@playwright/test';
 
-test('verify login page elements', async ({ page }) => {
-  await page.goto('https://practicetestautomation.com/practice-test-login/');
+test('successful login', async ({ page }) => {
+  await page.goto(
+    'https://practicetestautomation.com/practice-test-login/'
+  );
 
-  // Verify the page title
-  await expect(page).toHaveTitle(/Practice Test Automation/);
+  await page.locator('#username').fill('student');
+  await page.locator('#password').fill('Password123');
 
-  // Verify the username field is visible
-  await expect(page.locator('#username')).toBeVisible();
+  await page.locator('#submit').click();
 
-  // Verify the password field is visible
-  await expect(page.locator('#password')).toBeVisible();
+  await expect(page).toHaveURL(/logged-in-successfully/);
+  await expect(
+    page.getByRole('heading', { name: 'Logged In Successfully' })
+  ).toBeVisible();
 
-  // Verify the submit button is visible
-  await expect(page.locator('#submit')).toBeVisible();
+  console.log('PASS: Successful login verified');
+});
+
+test('login with incorrect password', async ({ page }) => {
+  await page.goto(
+    'https://practicetestautomation.com/practice-test-login/'
+  );
+
+  await page.locator('#username').fill('student');
+  await page.locator('#password').fill('WrongPassword');
+
+  await page.locator('#submit').click();
+
+  await expect(page.locator('#error')).toBeVisible();
+  await expect(page.locator('#error')).toContainText(
+    /Your password is invalid/
+  );
+
+  console.log('PASS: Invalid password error verified');
 });
