@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>QA Practice Form</title>
+</head>
+<body>
+    <h1>QA Practice Form</h1>
+
+    <label for="fname">First name:</label>
+    <input id="fname" type="text">
+
+    <br><br>
+
+    <label for="country">Country:</label>
+    <select id="country">
+        <option value="">Choose a country</option>
+        <option value="india">India</option>
+        <option value="usa">USA</option>
+        <option value="uk">United Kingdom</option>
+    </select>
+
+    <br><br>
+
+    <button id="submit">Submit</button>
+
+    <p id="result"></p>
+
+    <script>
+        document.getElementById("submit").addEventListener("click", () => {
+            const name = document.getElementById("fname").value;
+            const country = document.getElementById("country").value;
+
+            document.getElementById("result").textContent =
+                name && country
+                    ? "Form submitted successfully"
+                    : "Please complete all fields";
+        });
+    </script>
+</body>
+</html>
