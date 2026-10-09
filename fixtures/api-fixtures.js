@@ -1,19 +1,30 @@
 
-import { test as base, request } from '@playwright/test';
+import { test as base, request, expect } from '@playwright/test';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+const baseURL = process.env.API_BASE_URL;
+
+if (!baseURL) {
+  throw new Error('API_BASE_URL is missing from the .env file');
+}
 
 export const test = base.extend({
   api: async ({}, use) => {
     const api = await request.newContext({
-      baseURL: 'https://jsonplaceholder.typicode.com',
+      baseURL,
       extraHTTPHeaders: {
-        'Accept': 'application/json'
+        Accept: 'application/json'
       }
     });
 
-    await use(api);
-
-    await api.dispose();
+    try {
+      await use(api);
+    } finally {
+      await api.dispose();
+    }
   }
 });
 
-export { expect } from '@playwright/test';
+export { expect };
