@@ -1,19 +1,11 @@
 
 import { test as base, request, expect } from '@playwright/test';
-import dotenv from 'dotenv';
-
-dotenv.config();
-
-const baseURL = process.env.API_BASE_URL;
-
-if (!baseURL) {
-  throw new Error('API_BASE_URL is missing from the .env file');
-}
+import { config } from '../utils/config.js';
 
 export const test = base.extend({
   api: async ({}, use) => {
     const api = await request.newContext({
-      baseURL,
+      baseURL: config.apiBaseUrl,
       extraHTTPHeaders: {
         Accept: 'application/json'
       }
