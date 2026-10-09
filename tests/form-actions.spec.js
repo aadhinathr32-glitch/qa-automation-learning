@@ -38,7 +38,7 @@ test('show error when form is incomplete', async ({ page }) => {
 
 // Test 3: Country missing
 test('show error when country is missing', async ({ page }) => {
-    await page.locator('#fname').fill('Aadhi');git status
+    await page.locator('#fname').fill('Aadhi');
 
     await page.locator('#submit').click();
 
