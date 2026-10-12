@@ -16,6 +16,26 @@ export const test = base.extend({
     } finally {
       await api.dispose();
     }
+  },
+
+  authToken: async ({ api }, use) => {
+    const response = await api.post(
+      'https://dummyjson.com/auth/login',
+      {
+        data: {
+          username: 'emilys',
+          password: 'emilyspass'
+        }
+      }
+    );
+
+    expect(response.status()).toBe(200);
+
+    const body = await response.json();
+
+    expect(body.accessToken).toBeTruthy();
+
+    await use(body.accessToken);
   }
 });
 
