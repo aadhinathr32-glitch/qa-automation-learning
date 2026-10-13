@@ -1,13 +1,13 @@
-function waitOneSecond(){
+function waitTwoSeconds(){
     return new Promise(resolve => {
         setTimeout(() => {
-            resolve("Test completed");
-        },  1000);
+            resolve("Automation lesson completed");
+        }, 2000);
     });
 }
 async function main(){
     console.log("Starting test...");
-    let result = await waitOneSecond();
+    let result = await waitTwoSeconds();
     console.log(result);
 }
 main();
