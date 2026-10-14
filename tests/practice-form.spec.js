@@ -3,11 +3,14 @@ const { test, expect } = require("@playwright/test");
 const path = require("path");
 const { pathToFileURL } = require("url");
 
-// Test 1: Successful form submission
-test("should submit the practice form", async ({ page }) => {
+// Shared setup: run before each test
+test.beforeEach(async ({ page }) => {
   const filePath = path.resolve(__dirname, "practice-form.html");
   await page.goto(pathToFileURL(filePath).href);
+});
 
+// Test 1: Successful form submission
+test("should submit the practice form", async ({ page }) => {
   // Verify the heading
   await expect(
     page.getByRole("heading", { name: "QA Practice Form" })
@@ -22,7 +25,7 @@ test("should submit the practice form", async ({ page }) => {
   // Submit the form
   await page.locator("#submit").click();
 
-  // Verify successful submission
+  // Verify the success message
   await expect(page.locator("#result")).toHaveText(
     "Form submitted successfully"
   );
@@ -30,9 +33,6 @@ test("should submit the practice form", async ({ page }) => {
 
 // Test 2: Incomplete form submission
 test("should show an error when required fields are empty", async ({ page }) => {
-  const filePath = path.resolve(__dirname, "practice-form.html");
-  await page.goto(pathToFileURL(filePath).href);
-
   // Leave both fields empty and submit
   await page.locator("#submit").click();
 
