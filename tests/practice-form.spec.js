@@ -9,34 +9,44 @@ test.beforeEach(async ({ page }) => {
   await page.goto(pathToFileURL(filePath).href);
 });
 
-// Test 1: Successful form submission
-test("should submit the practice form", async ({ page }) => {
-  // Verify the heading
-  await expect(
-    page.getByRole("heading", { name: "QA Practice Form" })
-  ).toBeVisible();
+// Data sets for successful form submission
+const validFormData = [
+  {
+    name: "Alex",
+    country: "india",
+    expectedMessage: "Form submitted successfully",
+  },
+  {
+    name: "Maya",
+    country: "usa",
+    expectedMessage: "Form submitted successfully",
+  },
+  {
+    name: "Sam",
+    country: "uk",
+    expectedMessage: "Form submitted successfully",
+  },
+];
 
-  // Enter the first name
-  await page.locator("#fname").fill("Alex");
+// Generate one test for each data set
+validFormData.forEach(({ name, country, expectedMessage }) => {
+  test(`should submit the form for ${name} from ${country}`, async ({ page }) => {
+    await expect(
+      page.getByRole("heading", { name: "QA Practice Form" })
+    ).toBeVisible();
 
-  // Select India
-  await page.locator("#country").selectOption("india");
+    await page.locator("#fname").fill(name);
+    await page.locator("#country").selectOption(country);
+    await page.locator("#submit").click();
 
-  // Submit the form
-  await page.locator("#submit").click();
-
-  // Verify the success message
-  await expect(page.locator("#result")).toHaveText(
-    "Form submitted successfully"
-  );
+    await expect(page.locator("#result")).toHaveText(expectedMessage);
+  });
 });
 
-// Test 2: Incomplete form submission
+// Negative test: submit with empty fields
 test("should show an error when required fields are empty", async ({ page }) => {
-  // Leave both fields empty and submit
   await page.locator("#submit").click();
 
-  // Verify the validation message
   await expect(page.locator("#result")).toHaveText(
     "Please complete all fields"
   );
