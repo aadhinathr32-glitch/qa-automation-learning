@@ -28,7 +28,7 @@ const validFormData = [
   },
 ];
 
-// Generate one test for each data set
+// Test one successful submission for each data set
 validFormData.forEach(({ name, country, expectedMessage }) => {
   test(`should submit the form for ${name} from ${country}`, async ({ page }) => {
     await expect(
@@ -43,8 +43,30 @@ validFormData.forEach(({ name, country, expectedMessage }) => {
   });
 });
 
-// Negative test: submit with empty fields
-test("should show an error when required fields are empty", async ({ page }) => {
+// Negative test 1: both fields empty
+test("should show an error when all fields are empty", async ({ page }) => {
+  await page.locator("#submit").click();
+
+  await expect(page.locator("#result")).toHaveText(
+    "Please complete all fields"
+  );
+});
+
+// Negative test 2: name is missing
+test("should show an error when the name is missing", async ({ page }) => {
+  // Leave the name empty and select India
+  await page.locator("#country").selectOption("india");
+  await page.locator("#submit").click();
+
+  await expect(page.locator("#result")).toHaveText(
+    "Please complete all fields"
+  );
+});
+
+// Negative test 3: country is missing
+test("should show an error when the country is missing", async ({ page }) => {
+  // Enter a name but leave the country at its default empty option
+  await page.locator("#fname").fill("Alex");
   await page.locator("#submit").click();
 
   await expect(page.locator("#result")).toHaveText(
