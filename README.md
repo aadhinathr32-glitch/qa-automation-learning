@@ -64,11 +64,13 @@ Some API tests may require environment configuration. Check the relevant test an
 
 - [Fix the wrong selector — TestAcademy locator exercise](docs/testacademy/fix-wrong-selector.md)
 - [Fix the wrong assertion — TestAcademy forms and validation exercise](docs/testacademy/fix-wrong-assertion.md)
+- [Prove the login checks the password — TestAcademy exercise](docs/testacademy/login-actually-checks-the-password.md)
 
 ### Exercise code
 
 - [Fix the wrong selector — Playwright code](examples/testacademy/fix-wrong-selector.spec.js)
 - [Fix the wrong assertion — Playwright code](examples/testacademy/fix-wrong-assertion.spec.js)
+- [Prove the login checks the password — Playwright tests](examples/testacademy/login-actually-checks-the-password.spec.js)
 
 ## How I approach testing
 
