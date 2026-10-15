@@ -66,6 +66,7 @@ Some API tests may require environment configuration. Check the relevant test an
 - [Fix the wrong assertion — TestAcademy forms and validation exercise](docs/testacademy/fix-wrong-assertion.md)
 - [Prove the login checks the password — TestAcademy exercise](docs/testacademy/login-actually-checks-the-password.md)
 - [Replace the positional selector — TestAcademy locator exercise](docs/testacademy/refactor-positional-add-to-cart.md)
+- [Assert the cart badge updates — TestAcademy assertion exercise](docs/testacademy/assert-cart-badge-updates.md)
 
 ### Exercise code
 
@@ -73,6 +74,7 @@ Some API tests may require environment configuration. Check the relevant test an
 - [Fix the wrong assertion — Playwright code](examples/testacademy/fix-wrong-assertion.spec.js)
 - [Prove the login checks the password — Playwright tests](examples/testacademy/login-actually-checks-the-password.spec.js)
 - [Replace the positional selector — Playwright code](examples/testacademy/refactor-positional-add-to-cart.spec.js)
+- [Assert the cart badge updates — Playwright code](examples/testacademy/assert-cart-badge-updates.spec.js)
 
 ## How I approach testing
 
