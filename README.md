@@ -1,31 +1,88 @@
-# qa-automation-learning
-My journey learning QA automation with JavaScript, Playwright, API testing, and test automation frameworks.
+# QA Automation Learning
 
-## Testing Fundamentals
+A hands-on portfolio documenting my progress toward becoming a QA Automation Engineer, using JavaScript, Playwright, API testing, and CI.
 
-This section documents the core testing concepts I'm learning as part of my QA automation journey.
+> I use this repository to practise, document what I learn, and build a foundation for maintainable automated tests. Learning exercises are kept separate from the main test suite when they depend on an external practice application.
 
-### Types of Testing by Scope
+## What I'm learning
 
-| Testing Type | Purpose | Example |
-|---|---|---|
-| Unit Testing | Tests an individual function or component in isolation. | Verify a discount calculation function. |
-| Integration Testing | Verifies that multiple components work together. | Verify that saving a contact creates the expected database record. |
-| API Testing | Tests server endpoints directly without using a browser. | Send a POST request and validate the response status and JSON body. |
-| End-to-End (E2E) Testing | Validates a complete user journey through the application. | Log in through the browser and verify dashboard navigation. |
+- **Testing fundamentals** — test levels, regression, smoke, and meaningful assertions
+- **JavaScript for test automation** — functions, objects, arrays, async/await, and modules
+- **Playwright UI testing** — locators, actions, assertions, forms, fixtures, and browser automation
+- **API testing** — HTTP requests, response assertions, negative cases, authentication, and schema validation
+- **Test design** — data-driven tests, reusable helpers, fixtures, and configuration
+- **Quality engineering workflow** — Git, readable documentation, and CI with GitHub Actions
 
-### Types of Testing by Purpose
+## Repository guide
 
-- **Smoke Testing:** Checks whether the application's critical functionality works after a build or deployment.
-- **Regression Testing:** Verifies that existing functionality continues to work after changes.
-- **Acceptance Testing:** Checks whether a feature satisfies its business requirements.
+| Path | What's inside |
+|---|---|
+| `tests/` | Playwright UI and API practice tests |
+| `fixtures/` | Reusable Playwright test fixtures |
+| `utils/` | Shared helpers and configuration |
+| `docs/` | Learning notes and documented external exercises |
+| `lesson*.js` | JavaScript learning exercises |
+| `.github/workflows/` | GitHub Actions workflow |
+| `playwright.config.js` | Playwright test-runner configuration |
 
-### Choosing the Right Test Level
+## Getting started
 
-Prefer the cheapest test level that can reliably detect the defect.
+### Requirements
 
-For example, if a calculation defect can be caught by a unit test, a browser-based end-to-end test is usually unnecessarily expensive. E2E tests are valuable for critical user journeys that require several parts of the application to work together.
+- Node.js (LTS recommended)
+- npm
 
-### Key Learning
+### Install dependencies
 
-Automated tests verify defined expectations. Choosing the appropriate testing level helps make a test suite faster, more reliable, and easier to maintain.
+```bash
+npm ci
+npx playwright install
+```
+
+### Run the tests
+
+```bash
+npx playwright test
+```
+
+Run a specific test file:
+
+```bash
+npx playwright test tests/locators.spec.js
+```
+
+Open the HTML report after a test run:
+
+```bash
+npx playwright show-report
+```
+
+Some API tests may require environment configuration. Check the relevant test and configuration before running them; never commit real credentials or tokens. Use `.env.example` as a guide for environment variables.
+
+## Learning notes
+
+- [Fix the wrong selector — TestAcademy locator exercise](docs/testacademy/fix-wrong-selector.md)
+
+## How I approach testing
+
+1. Understand the behaviour the test is meant to protect.
+2. Choose a locator and assertion that actually verify that behaviour.
+3. Keep tests independent and avoid arbitrary sleeps.
+4. Investigate failures rather than weakening assertions just to make a test pass.
+5. Document the reason behind a decision, not only the code.
+
+## Roadmap
+
+- [x] Start a JavaScript and Playwright learning repository
+- [x] Practise UI locators and assertions
+- [x] Explore API testing, fixtures, and reusable helpers
+- [ ] Deepen JavaScript async/await and debugging skills
+- [ ] Improve test isolation and flaky-test diagnosis
+- [ ] Add a focused, end-to-end portfolio project
+- [ ] Review CI results and publish clear project documentation
+
+This roadmap reflects an ongoing learning process; check the linked code and GitHub Actions results for the current state.
+
+## About
+
+I'm documenting my progress through practical exercises and small projects. The goal is to understand why tests work, what they verify, and how to keep them reliable—not just to collect passing test runs.
