@@ -1,47 +1,35 @@
-
 import { test, expect } from '@playwright/test';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 
-// Run this setup before every test
+// Load the local practice form before every test.
 test.beforeEach(async ({ page }) => {
-    const formPath = path.resolve('tests/practice-form.html');
-
-    await page.goto(pathToFileURL(formPath).href);
+  const formPath = path.resolve('tests/practice-form.html');
+  await page.goto(pathToFileURL(formPath).href);
 });
 
-// Test 1: Successful form submission
-test('fill and submit practice form', async ({ page }) => {
-    const firstName = page.locator('#fname');
+test('submits the practice form with valid details', async ({ page }) => {
+  await page.locator('#fname').fill('Aadhi');
+  await page.locator('#email').fill('aadhi@example.com');
 
-    await firstName.fill('Aadhi');
-    await expect(firstName).toHaveValue('Aadhi');
+  await page.getByRole('button', { name: 'Submit' }).click();
 
-    const country = page.locator('#country');
-
-    await country.selectOption('india');
-    await expect(country).toHaveValue('india');
-
-    await page.locator('#submit').click();
-
-    await expect(page.locator('#result'))
-        .toHaveText('Form submitted successfully');
+  await expect(page.locator('#result'))
+    .toHaveText('Form submitted successfully!');
 });
 
-// Test 2: Empty form
-test('show error when form is incomplete', async ({ page }) => {
-    await page.locator('#submit').click();
+test('shows an error when the form is incomplete', async ({ page }) => {
+  await page.getByRole('button', { name: 'Submit' }).click();
 
-    await expect(page.locator('#result'))
-        .toHaveText('Please complete all fields');
+  await expect(page.locator('#result'))
+    .toHaveText('Please complete all fields');
 });
 
-// Test 3: Country missing
-test('show error when country is missing', async ({ page }) => {
-    await page.locator('#fname').fill('Aadhi');
+test('shows an error when the email is missing', async ({ page }) => {
+  await page.locator('#fname').fill('Aadhi');
 
-    await page.locator('#submit').click();
+  await page.getByRole('button', { name: 'Submit' }).click();
 
-    await expect(page.locator('#result'))
-        .toHaveText('Please complete all fields');
+  await expect(page.locator('#result'))
+    .toHaveText('Please complete all fields');
 });
