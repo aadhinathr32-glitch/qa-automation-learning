@@ -62,6 +62,7 @@ Some API tests may require environment configuration. Check the relevant test an
 ## Learning notes
 
 - [Fix the wrong selector — TestAcademy locator exercise](docs/testacademy/fix-wrong-selector.md)
+- [Fix the wrong assertion — TestAcademy forms and validation exercise](docs/testacademy/fix-wrong-assertion.md)
 
 ## How I approach testing
 
