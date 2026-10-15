@@ -3,80 +3,78 @@ const { test, expect } = require("@playwright/test");
 const path = require("path");
 const { pathToFileURL } = require("url");
 
-// Shared setup: run before each test
-test.beforeEach(async ({ page }) => {
-  const filePath = path.resolve(__dirname, "practice-form.html");
-  await page.goto(pathToFileURL(filePath).href);
-});
+const formPath = path.resolve(__dirname, "practice-form.html");
+const formUrl = pathToFileURL(formPath).href;
 
-// Data sets for successful form submission
-const validFormData = [
-  {
-    name: "Alex",
-    country: "india",
-    expectedMessage: "Form submitted successfully",
-  },
-  {
-    name: "Maya",
-    country: "usa",
-    expectedMessage: "Form submitted successfully",
-  },
-  {
-    name: "Sam",
-    country: "uk",
-    expectedMessage: "Form submitted successfully",
-  },
-];
+test.describe("Practice Form - DOM validation", () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto(formUrl);
+  });
 
-// Test successful submission with different data
-validFormData.forEach(({ name, country, expectedMessage }) => {
-  test(`should submit the form for ${name} from ${country}`, async ({ page }) => {
-    await expect(
-      page.getByRole("heading", { name: "QA Practice Form" })
-    ).toBeVisible();
+  test("result element exists but is initially hidden", async ({ page }) => {
+    const result = page.locator("#result");
 
-    await page.locator("#fname").fill(name);
-    await page.locator("#country").selectOption(country);
-    await page.locator("#submit").click();
+    await expect(result).toBeAttached();
+    await expect(result).toBeHidden();
+    await expect(result).toHaveText("");
+  });
 
-    await expect(page.locator("#result")).toHaveText(expectedMessage);
+  test("empty submission displays validation message", async ({ page }) => {
+    const result = page.locator("#result");
+
+    await page.getByRole("button", { name: "Submit" }).click();
+
+    await expect(result).toBeVisible();
+    await expect(result).toHaveText("Please complete all fields");
+  });
+
+  test("valid submission displays success message", async ({ page }) => {
+    await page.locator("#fname").fill("Aadhi");
+    await page.locator("#email").fill("aadhi@example.com");
+
+    await page.getByRole("button", { name: "Submit" }).click();
+
+    await expect(page.locator("#result")).toBeVisible();
+    await expect(page.locator("#result"))
+      .toHaveText("Form submitted successfully!");
   });
 });
 
-// Test: all fields empty
-test("should show an error when all fields are empty", async ({ page }) => {
-  await page.locator("#submit").click();
+// Data-driven test cases
+const invalidFormCases = [
+  {
+    name: "both fields are empty",
+    firstName: "",
+    email: "",
+    expectedMessage: "Please complete all fields",
+  },
+  {
+    name: "first name is missing",
+    firstName: "",
+    email: "aadhi@example.com",
+    expectedMessage: "Please complete all fields",
+  },
+  {
+    name: "email is missing",
+    firstName: "Aadhi",
+    email: "",
+    expectedMessage: "Please complete all fields",
+  },
+];
 
-  await expect(page.locator("#result")).toHaveText(
-    "Please complete all fields"
-  );
-});
+// Generate one test for each data object
+invalidFormCases.forEach(({ name, firstName, email, expectedMessage }) => {
+  test(`Data-driven validation: ${name}`, async ({ page }) => {
+    await page.goto(formUrl);
 
-// Test: name missing
-test("should show an error when the name is missing", async ({ page }) => {
-  await page.locator("#country").selectOption("india");
-  await page.locator("#submit").click();
+    await page.locator("#fname").fill(firstName);
+    await page.locator("#email").fill(email);
 
-  await expect(page.locator("#result")).toHaveText(
-    "Please complete all fields"
-  );
-});
+    await page.getByRole("button", { name: "Submit" }).click();
 
-// Test: country missing
-test("should show an error when the country is missing", async ({ page }) => {
-  await page.locator("#fname").fill("Alex");
-  await page.locator("#submit").click();
+    const result = page.locator("#result");
 
-  await expect(page.locator("#result")).toHaveText(
-    "Please complete all fields"
-  );
-});
-
-// Test: enter text character by character
-test("should enter the first name sequentially", async ({ page }) => {
-  const nameInput = page.locator("#fname");
-
-  await nameInput.pressSequentially("Alex");
-
-  await expect(nameInput).toHaveValue("Alex");
+    await expect(result).toBeVisible();
+    await expect(result).toHaveText(expectedMessage);
+  });
 });

@@ -2,41 +2,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>QA Practice Form</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QA Automation Practice Form</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 500px;
+      margin: 50px auto;
+      padding: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    #result {
+      display: none;
+      color: red;
+      margin-top: 15px;
+    }
+
+    #result.visible {
+      display: block;
+    }
+  </style>
 </head>
+
 <body>
-    <h1>QA Practice Form</h1>
+  <h1>Practice Form</h1>
 
-    <label for="fname">First name:</label>
-    <input id="fname" type="text">
+  <form id="practiceForm">
+    <label for="fname">First name</label>
+    <input id="fname" name="fname" type="text">
 
-    <br><br>
+    <label for="email">Email</label>
+    <input id="email" name="email" type="email">
 
-    <label for="country">Country:</label>
-    <select id="country">
-        <option value="">Choose a country</option>
-        <option value="india">India</option>
-        <option value="usa">USA</option>
-        <option value="uk">United Kingdom</option>
-    </select>
+    <button type="submit">Submit</button>
+  </form>
 
-    <br><br>
+  <p id="result" role="alert"></p>
 
-    <button id="submit">Submit</button>
+  <script>
+    const form = document.querySelector("#practiceForm");
+    const result = document.querySelector("#result");
 
-    <p id="result"></p>
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
 
-    <script>
-        document.getElementById("submit").addEventListener("click", () => {
-            const name = document.getElementById("fname").value;
-            const country = document.getElementById("country").value;
+      const firstName = document.querySelector("#fname").value.trim();
+      const email = document.querySelector("#email").value.trim();
 
-            document.getElementById("result").textContent =
-                name && country
-                    ? "Form submitted successfully"
-                    : "Please complete all fields";
-        });
-    </script>
+      if (!firstName || !email) {
+        result.textContent = "Please complete all fields";
+        result.classList.add("visible");
+      } else {
+        result.textContent = "Form submitted successfully!";
+        result.classList.add("visible");
+        result.style.color = "green";
+      }
+    });
+  </script>
 </body>
 </html>
