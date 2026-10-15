@@ -21,6 +21,7 @@ A hands-on portfolio documenting my progress toward becoming a QA Automation Eng
 | `fixtures/` | Reusable Playwright test fixtures |
 | `utils/` | Shared helpers and configuration |
 | `docs/` | Learning notes and documented external exercises |
+| `examples/testacademy/` | Playwright code for TestAcademy exercises (kept outside the default test suite) |
 | `lesson*.js` | JavaScript learning exercises |
 | `.github/workflows/` | GitHub Actions workflow |
 | `playwright.config.js` | Playwright test-runner configuration |
@@ -63,6 +64,11 @@ Some API tests may require environment configuration. Check the relevant test an
 
 - [Fix the wrong selector — TestAcademy locator exercise](docs/testacademy/fix-wrong-selector.md)
 - [Fix the wrong assertion — TestAcademy forms and validation exercise](docs/testacademy/fix-wrong-assertion.md)
+
+### Exercise code
+
+- [Fix the wrong selector — Playwright code](examples/testacademy/fix-wrong-selector.spec.js)
+- [Fix the wrong assertion — Playwright code](examples/testacademy/fix-wrong-assertion.spec.js)
 
 ## How I approach testing
 
