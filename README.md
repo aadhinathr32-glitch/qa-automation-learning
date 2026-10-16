@@ -69,6 +69,7 @@ Some API tests may require environment configuration. Check the relevant test an
 - [Assert the cart badge updates — TestAcademy assertion exercise](docs/testacademy/assert-cart-badge-updates.md)
 - [Prove the empty login form is validated — TestAcademy exercise](docs/testacademy/empty-login-form-validation.md)
 - [Assert the wrong-password error — TestAcademy exercise](docs/testacademy/assert-wrong-password-error.md)
+- [Fix the wrong expected count — TestAcademy exercise](docs/testacademy/fix-wrong-expected-count.md)
 
 ### Exercise code
 
@@ -79,6 +80,7 @@ Some API tests may require environment configuration. Check the relevant test an
 - [Assert the cart badge updates — Playwright code](examples/testacademy/assert-cart-badge-updates.spec.js)
 - [Prove the empty login form is validated — Playwright code](examples/testacademy/empty-login-form-validation.spec.js)
 - [Assert the wrong-password error — Playwright code](examples/testacademy/assert-wrong-password-error.spec.js)
+- [Fix the wrong expected count — Playwright code](examples/testacademy/fix-wrong-expected-count.spec.js)
 
 ## How I approach testing
 
