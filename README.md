@@ -72,6 +72,7 @@ Some API tests may require environment configuration. Check the relevant test an
 - [Fix the wrong expected count — TestAcademy exercise](docs/testacademy/fix-wrong-expected-count.md)
 - [The cart badge lies — TestAcademy exercise](docs/testacademy/cart-badge-and-feedback.md)
 - [Prove the search actually filters — TestAcademy exercise](docs/testacademy/contact-search-really-filters.md)
+- [Prove the search hides the rest — TestAcademy exercise](docs/testacademy/cart-search-hides-everything-else.md)
 
 ### Exercise code
 
@@ -85,6 +86,7 @@ Some API tests may require environment configuration. Check the relevant test an
 - [Fix the wrong expected count — Playwright code](examples/testacademy/fix-wrong-expected-count.spec.js)
 - [The cart badge lies — Playwright code](examples/testacademy/cart-badge-and-feedback.spec.js)
 - [Prove the search actually filters — Playwright code](examples/testacademy/contact-search-really-filters.spec.js)
+- [Prove the search hides the rest — Playwright code](examples/testacademy/cart-search-hides-everything-else.spec.js)
 
 ## How I approach testing
 
