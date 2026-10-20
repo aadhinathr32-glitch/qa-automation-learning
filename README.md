@@ -74,6 +74,7 @@ Some API tests may require environment configuration. Check the relevant test an
 - [Prove the search actually filters — TestAcademy exercise](docs/testacademy/contact-search-really-filters.md)
 - [Prove the search hides the rest — TestAcademy exercise](docs/testacademy/cart-search-hides-everything-else.md)
 - [Removing an item has to remove it — TestAcademy exercise](docs/testacademy/removing-last-item-empties-cart.md)
+- [The cart makes four promises — TestAcademy exercise](docs/testacademy/cart-keeps-every-promise.md)
 
 ### Exercise code
 
@@ -89,6 +90,7 @@ Some API tests may require environment configuration. Check the relevant test an
 - [Prove the search actually filters — Playwright code](examples/testacademy/contact-search-really-filters.spec.js)
 - [Prove the search hides the rest — Playwright code](examples/testacademy/cart-search-hides-everything-else.spec.js)
 - [Removing an item has to remove it — Playwright code](examples/testacademy/removing-last-item-empties-cart.spec.js)
+- [The cart makes four promises — Playwright code](examples/testacademy/cart-keeps-every-promise.spec.js)
 
 ## How I approach testing
 
