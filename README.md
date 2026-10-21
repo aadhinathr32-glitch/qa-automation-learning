@@ -78,6 +78,7 @@ Some API tests may require environment configuration. Check the relevant test an
 - [Prove the status filter filters — TestAcademy exercise](docs/testacademy/status-filter-really-filters.md)
 - [Assert the search result count — TestAcademy exercise](docs/testacademy/assert-search-result-count.md)
 - [Prove a contact was actually saved — TestAcademy exercise](docs/testacademy/contact-was-actually-saved.md)
+- [The subtotal multiplies by quantity — TestAcademy exercise](docs/testacademy/cart-subtotal-multiplies-quantity.md)
 
 ### Exercise code
 
@@ -97,6 +98,7 @@ Some API tests may require environment configuration. Check the relevant test an
 - [Prove the status filter filters — Playwright code](examples/testacademy/status-filter-really-filters.spec.js)
 - [Assert the search result count — Playwright code](examples/testacademy/assert-search-result-count.spec.js)
 - [Prove a contact was actually saved — Playwright code](examples/testacademy/contact-was-actually-saved.spec.js)
+- [The subtotal multiplies by quantity — Playwright code](examples/testacademy/cart-subtotal-multiplies-quantity.spec.js)
 
 ## How I approach testing
 
